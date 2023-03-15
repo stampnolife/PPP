@@ -63,6 +63,8 @@ if(isset($_SESSION['mem_id'])==""){
 
 $sql=$conn->query("SELECT * FROM orders WHERE order_id = '$_REQUEST[order_id]'");
 $show=$sql->fetch_assoc();
+// echo print_r($show);
+// exit(0);
 ?>
 <?php 
 
@@ -88,7 +90,7 @@ include('includes/navbar.php');
     </div>
     <div class="form-group col-md-6">
       <label for="pricetotal">จำนวนเงินที่ต้องชำระ</label>
-      <input type="text" class="form-control" id="pricetotal" name="pricetotal" placeholder="pricetotal" value="<?php echo number_format($_SESSION['price_totals'],2); ?>"readonly>
+      <input type="text" class="form-control" id="pricetotal" name="pricetotal" placeholder="pricetotal" value="<?php echo number_format($show['price_total'],2); ?>"readonly>
     </div>
     <div class="form-group col-md-6">
       <label for="payment_price">จำนวนเงินที่โอน</label>
