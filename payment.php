@@ -66,6 +66,15 @@ $show=$sql->fetch_assoc();
 // echo print_r($show);
 // exit(0);
 ?>
+ <?php 
+            $sqlcount = $conn->query("SELECT COUNT(order_number) AS countorder_number FROM `order_detail` WHERE order_number = '$show[order_number]' ");
+            $showcount= $sqlcount->fetch_assoc();
+            // echo print_r($showcount);
+            // exit(0);
+            $sql2 = $conn->query("select * from orders WHERE order_number = '$show[order_number]' ");
+            $show2= $sql2->fetch_assoc();
+            $totalshipping= $showcount['countorder_number'] * $show2['order_shipping'];
+            ?>
 <?php 
 
 require_once 'config.php';
@@ -90,7 +99,7 @@ include('includes/navbar.php');
     </div>
     <div class="form-group col-md-6">
       <label for="pricetotal">จำนวนเงินที่ต้องชำระ</label>
-      <input type="text" class="form-control" id="pricetotal" name="pricetotal" placeholder="pricetotal" value="<?php echo number_format($show['price_total'],2); ?>"readonly>
+      <input type="text" class="form-control" id="pricetotal" name="pricetotal" placeholder="pricetotal" value="<?php echo number_format($show['price_total']+ $totalshipping,2); ?>"readonly>
     </div>
     <div class="form-group col-md-6">
       <label for="payment_price">จำนวนเงินที่โอน</label>

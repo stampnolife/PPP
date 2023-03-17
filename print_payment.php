@@ -113,11 +113,14 @@ if($show2['order_shipping']==50){
             // $sqlcount ="SELECT COUNT('order_number') AS countorder_number FROM `order_detail` WHERE order_number = '$_REQUEST[order_number]'";
             // $rescount=mysqli_query($conn,$sql1);
             // $showcount=mysqli_fetch_array($rescount);
-            
-            $sqlcount = $conn->query("SELECT COUNT(order_number) AS countorder_number FROM `order_detail` WHERE order_number = '$_REQUEST[order_number]' ");
-            $showcount= $sqlcount->fetch_assoc();
             ?>
             <?php } ?>
+            <?php 
+            $sqlcount = $conn->query("SELECT COUNT(order_number) AS countorder_number FROM `order_detail` WHERE order_number = '$_REQUEST[order_number]' ");
+            $showcount= $sqlcount->fetch_assoc();
+            // echo print_r($showcount);
+            // exit(0);
+            ?>
                 <tr>
                     <td   colspan="5" style="text-align: right;padding-bottom: 10px;padding-top: 10px;padding-left: 10px;padding-right: 10px;"><h5>ราคาสินค้าทั้งหมด: </h5></td><td   style="padding-bottom: 10px;padding-top: 10px;padding-left: 10px;padding-right: 10px;"><h5><?php echo   number_format($show2['price_total'],2)?> บาท</h5></td>
                 </tr>
