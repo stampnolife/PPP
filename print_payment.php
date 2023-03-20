@@ -42,7 +42,7 @@ $sql2 = $conn->query("select * from orders WHERE order_number = '$_REQUEST[order
 $show2= $sql2->fetch_assoc();
 if($show2['order_status']==0){$status = '<span class=text-wrning>รอชำระเงิน</span>';}
 else if($show2['order_status']==1){$status = '<span class=text-success>ตรวจสอบชำระเงิน</span>';}
-else if($show2['order_status']==2){$status = '<span class=text-info>ชำระเงินเรียบร้อย</span>';}
+else if($show2['order_status']==2){$status = '<span class=text-info>ชำระเรียบร้อย</span>';}
 else if($show2['order_status']==3){$status = '<span class=text-primary>จัดส่งเรียบร้อย</span>';}
 else if($show2['order_status']==4){$status = '<span class=text-danger>ยกเลิกรายการ</span>';}
 if($show2['order_shipping']==50){

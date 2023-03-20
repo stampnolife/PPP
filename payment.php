@@ -74,7 +74,8 @@ $show=$sql->fetch_assoc();
             $sql2 = $conn->query("select * from orders WHERE order_number = '$show[order_number]' ");
             $show2= $sql2->fetch_assoc();
             $totalshipping= $showcount['countorder_number'] * $show2['order_shipping'];
-            ?>
+  ?>
+
 <?php 
 
 require_once 'config.php';

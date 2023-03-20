@@ -13,6 +13,8 @@ if(mysqli_query($conn,$sql)){
     echo "Sql Error:ไม่สามารถแก้ไขข้อมูลได้".$sql; 
     header('Refresh:5; url=index.php');
 }
-    //echo '<pre>'.print_r($_POST),'<pre>';
+    // echo '<pre>'.print_r($_POST),'<pre>';
+    // exit(0);
 
+    // if ($_POST['order_id'])
 ?>

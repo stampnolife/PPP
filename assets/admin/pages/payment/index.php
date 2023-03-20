@@ -28,13 +28,25 @@ include_once('../../connect.php');
 
 </style>
 <?php 
-
 if($_REQUEST['admin']=='update'){
-
+  // echo '<pre>'.print_r($_REQUEST),'<pre>';
+  // exit(0);
   //แก้ไขข้อมูลลง table ที่กำหนด โดยให้ชื่อฟิลด์ใน table ใน db = ค่าที่รับมา โดยข้อมูลที่แก้จะเปลี่ยนแปลงตาม id ของ รายการนั้น
   $sql = $conn->query("update payment set payment_status = '$_REQUEST[status]' where payment_id = '$_REQUEST[id]'");
   
-  $sql = $conn->query("update orders set order_status = '2' where order_id = '$_REQUEST[order_id]'");
+  $orderstatus=array(
+    "จัดส่งเรียบร้อย"=>3,
+    "ชำระเรียบร้อย"=>2,
+    "ตรวจสอบชำระเงิน"=>1,
+    "รอชำระเงิน"=>0,
+    "ยกเลิกรายการ"=>4
+  );
+
+  $orderstatusupdate=$orderstatus[$_REQUEST['status']];
+  // echo '<pre>'.print_r($orderstatusupdate),'<pre>';
+  // exit(0);
+  $sql = $conn->query("update orders set order_status ='$orderstatusupdate'  where order_id = '$_REQUEST[order_id]'");
+
   
   //function check แก้ไขข้อมูล จะมี alert ขึ้นมา ตามเงื่อนไข
   Chk_Update($sql,'อัพเดทข้อมูลเรียบร้อย');
@@ -156,7 +168,7 @@ if($_REQUEST['admin']=='update'){
                       </button>
                     </div>
                     <div class="modal-body">
-                    <form id="myform1" method="post" action="?admin=update&id=<?php echo $row['payment_id'];?>">
+                    <form id="myform1" method="post" action="?admin=update&id=<?php echo $row['payment_id'];?>&order_id=<?php echo $row['order_id'] ?>">
                     <div class="form-group">
                     <?php 
                   $sql3 = $conn->query("select * from payment where payment_id = '$row[payment_id]'");
@@ -170,8 +182,9 @@ if($_REQUEST['admin']=='update'){
             <div class="form-group">
             <lable>สถานะ:<lable>
            <select name="status" class="form-control">
-           <option value="ตรวจสอบ"<?php if($show3['pay_status']==0){echo 'selected';}?>>ตรวจสอบ</option>
-           <option value="ชำระเรียบร้อย"<?php if($show3['pay_status']==1){echo 'selected';}?>>ชำระเรียบร้อย</option>
+           <option value="ตรวจสอบ"<?php if($show3['pay_status']==1){echo 'selected';}?>>ตรวจสอบ</option>
+           <option value="ชำระเรียบร้อย"<?php if($show3['pay_status']==2){echo 'selected';}?>>ชำระเรียบร้อย</option>
+           <option value="จัดส่งเรียบร้อย"<?php if($show3['pay_status']==3){echo 'selected';}?>>จัดส่งเรียบร้อย</option>
            </select>
           </div>
                     </div>
