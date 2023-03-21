@@ -153,6 +153,29 @@ include_once('../../connect.php'); ?>
 
         </div>
       </div>
+
+
+      <body>
+    <?php
+    include('intro.php');
+    $p = (isset($_GET['p']) ? $_GET['p'] : '');
+    if($p=='daily'){
+      include('r_daily.php');
+    }elseif($p=='monthy'){
+      include('r_monthy.php');
+    }elseif($p=='yearly'){
+      include('r_yearly.php');
+    }elseif($p=='add'){
+      include('form.php');
+    }elseif($p=='adddb'){
+      include('form_db.php');
+    }else{
+      include('r_daily.php');
+    }
+    ?>
+    
+  </body>
+      
     </section>
     <!-- /.content -->
   </div>
