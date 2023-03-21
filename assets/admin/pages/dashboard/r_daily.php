@@ -73,7 +73,7 @@
                 });
                 </script>
             </p>
-            <div class="col-sm-12">
+            <!-- <div class="col-sm-12">
                 <h3>List</h3>
                 <table  class="table table-striped" border="1" cellpadding="0"  cellspacing="0" align="center">
                     <thead>
@@ -112,7 +112,7 @@
                         <?php echo number_format($price_total_total,2);?></b></td></td>
                     </tr>
                 </table>
-            </div>
+            </div> -->
             <?php mysqli_close($conn);?>
         </div>
     </div>

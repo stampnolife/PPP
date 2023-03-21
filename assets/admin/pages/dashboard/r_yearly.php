@@ -72,7 +72,7 @@
                 </script>
             </p>
             <div class="col-sm-4">
-                <h3>List</h3>
+                <!-- <h3>List</h3>
                 <table  class="table table-striped" border="1" cellpadding="0"  cellspacing="0" align="center">
                     <thead>
                         <tr class="table-primary">
@@ -95,7 +95,7 @@
                         <td align="right"><b>
                         <?php echo number_format($price_total_total,2);?></b></td></td>
                     </tr>
-                </table>
+                </table> -->
             </div>
             <?php mysqli_close($conn);?>
         </div>
